@@ -231,7 +231,7 @@ function PosterGenerator() {
         {
           method: "POST",
           headers: {
-            Authorization: "***REMOVED***",
+            Authorization: "hugging-face-API",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
