@@ -1,0 +1,352 @@
+.quranic-verse {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 2rem 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.page-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 0 4rem;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #000000, #009736);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.verse-container {
+  width: 100%;
+  margin: 0 auto 4rem;
+  padding: 0 4rem;
+}
+
+.verse-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.nav-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #000000, #009736);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.verse-counter {
+  color: #6c757d;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.verse-card {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  border: 2px solid #f8f9fa;
+  width: 100%;
+}
+
+.verse-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f8f9fa;
+}
+
+.surah-name {
+  font-size: 2rem;
+  color: #000000;
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+
+.ayah-number {
+  color: #009736;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.verse-content {
+  margin-bottom: 2rem;
+}
+
+.arabic-text {
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 2.5;
+  color: #000000;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  border-right: 4px solid #009736;
+  direction: rtl;
+}
+
+.translation,
+.tafsir {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #009736;
+}
+
+.translation h3,
+.tafsir h3 {
+  color: #000000;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.translation p,
+.tafsir p {
+  color: #495057;
+  line-height: 1.8;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.verse-theme {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.theme-badge {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #000000, #009736);
+  color: white;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.verse-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #009736;
+  background: white;
+  color: #009736;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-button:hover,
+.control-button.active {
+  background: #009736;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.verse-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: #009736;
+  transform: scale(1.2);
+}
+
+.reflection-section {
+  width: 100%;
+  margin: 0 auto 4rem;
+  padding: 0 4rem;
+}
+
+.reflection-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.reflection-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reflection-content p {
+  color: #6c757d;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.reflection-prompts h3 {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.reflection-prompts ul {
+  color: #6c757d;
+  line-height: 1.8;
+  padding-left: 1.5rem;
+}
+
+.reflection-prompts li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.prayer-section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+  text-align: center;
+}
+
+.prayer-section h2 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.prayer-text {
+  background: linear-gradient(135deg, #000000, #009736);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.prayer-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .verse-container,
+  .reflection-section,
+  .prayer-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .page-header {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .verse-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .arabic-text {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+  
+  .verse-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .verse-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .control-button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .reflection-section h2,
+  .prayer-section h2 {
+    font-size: 2rem;
+  }
+  
+  .verse-container,
+  .reflection-section,
+  .prayer-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .page-header {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .verse-container,
+  .reflection-section,
+  .prayer-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .page-header {
+    padding: 0 1rem;
+  }
+} 

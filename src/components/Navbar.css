@@ -1,0 +1,219 @@
+.navbar {
+  background: linear-gradient(135deg, #000000 0%, #009736 50%, #ffffff 100%);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+
+
+.navbar-logo {
+  width: 160px;
+  height: 160px;
+  filter: drop-shadow(0 0 8px rgba(0, 151, 54, 0.8)) 
+          drop-shadow(0 0 16px rgba(0, 151, 54, 0.6))
+          drop-shadow(0 0 24px rgba(0, 151, 54, 0.4));
+  transition: transform 0.3s ease;
+}
+
+
+
+.navbar-logo:hover {
+  transform: scale(1.1);
+}
+
+.navbar-brand h1 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  display: block;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, #000000, #009736, #ffffff);
+  border-radius: 2px;
+}
+ 
+/* Mobile menu button */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .navbar-nav {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar-nav {
+    gap: 0.8rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .navbar-nav {
+    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.5rem;
+  }
+  
+  .navbar-logo {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar-container {
+    padding: 0 0.5rem;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.3rem;
+  }
+  
+  .navbar-logo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .navbar-nav {
+    gap: 0.25rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-brand h1 {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .nav-link {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .navbar-nav {
+    gap: 0.2rem;
+  }
+} 
