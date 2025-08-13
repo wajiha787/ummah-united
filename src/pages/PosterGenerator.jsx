@@ -231,7 +231,7 @@ function PosterGenerator() {
         {
           method: "POST",
           headers: {
-            Authorization: "hugging-face-API",
+            Authorization: import.meta.env.VITE_HUGGING_FACE_API,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
