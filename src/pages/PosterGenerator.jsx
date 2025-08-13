@@ -13,6 +13,7 @@ function PosterGenerator() {
     customText: ''
   })
   const [generatedPoster, setGeneratedPoster] = useState(null)
+  const [isGenerating, setIsGenerating] = useState(false)
   const canvasRef = useRef(null)
 
   const templates = [
@@ -30,7 +31,7 @@ function PosterGenerator() {
     },
     {
       id: 'solidarity',
-      name: 'Solidarity',
+      name: 'Solidarity (AI Generated)',
       preview: '🤝',
       colors: ['#009736', '#ffffff', '#000000']
     },
@@ -50,6 +51,12 @@ function PosterGenerator() {
   }
 
   const generatePoster = () => {
+    // If solidarity template is selected, use AI generation
+    if (selectedTemplate === 'solidarity') {
+      generateAIPoster()
+      return
+    }
+
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     
@@ -181,7 +188,78 @@ function PosterGenerator() {
       customText: ''
     })
     setGeneratedPoster(null)
+    setIsGenerating(false)
   }
+  const generateAIPoster = async () => {
+    setIsGenerating(true)
+    try {
+      // Create a dynamic prompt based on user input
+      let prompt = "Create a clean, bold solidarity poster. Use the Palestinian flag colors (red, green, black, white) prominently. Include one strong symbol such as a raised fist or hands joined in solidarity. "
+      
+      if (posterData.title) {
+        prompt += `Add large, clear, bold text saying "${posterData.title}" in capital letters. `
+      }
+      
+      if (posterData.subtitle) {
+        prompt += `Include subtitle text: "${posterData.subtitle}". `
+      }
+      
+      if (posterData.date || posterData.time) {
+        let dateTimeText = ''
+        if (posterData.date) dateTimeText += posterData.date
+        if (posterData.date && posterData.time) dateTimeText += ' at '
+        if (posterData.time) dateTimeText += posterData.time
+        prompt += `Include date/time: "${dateTimeText}". `
+      }
+      
+      if (posterData.location) {
+        prompt += `Include location: "${posterData.location}". `
+      }
+      
+      if (posterData.description) {
+        prompt += `Include description: "${posterData.description}". `
+      }
+      
+      if (posterData.customText) {
+        prompt += `Include custom text: "${posterData.customText}". `
+      }
+      
+      prompt += "Make it a professional, impactful poster design suitable for social media sharing."
+
+      const response = await fetch(
+        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "***REMOVED***",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            inputs: prompt,
+            parameters: {
+              width: 1024,
+              height: 1024,
+              num_inference_steps: 30,
+              guidance_scale: 8,
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const blob = await response.blob();
+      const posterImage = URL.createObjectURL(blob);
+      setGeneratedPoster(posterImage);
+    } catch (error) {
+      console.error("Failed to create AI poster:", error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
 
   return (
     <div className="poster-generator">
@@ -208,6 +286,11 @@ function PosterGenerator() {
                 </div>
               ))}
             </div>
+            {selectedTemplate === 'solidarity' && (
+              <div className="ai-notice">
+                <p>🤖 This template uses AI generation for unique, creative designs!</p>
+              </div>
+            )}
           </div>
 
           <div className="poster-form">
@@ -289,8 +372,12 @@ function PosterGenerator() {
             </div>
 
             <div className="form-actions">
-              <button className="btn btn-primary" onClick={generatePoster}>
-                Generate Poster
+              <button 
+                className="btn btn-primary" 
+                onClick={generatePoster}
+                disabled={isGenerating}
+              >
+                {isGenerating ? 'Generating...' : 'Generate Poster'}
               </button>
               <button className="btn btn-secondary" onClick={resetPoster}>
                 Reset
@@ -302,7 +389,15 @@ function PosterGenerator() {
         <div className="preview-section">
           <h2>Poster Preview</h2>
           
-          {generatedPoster ? (
+          {isGenerating ? (
+            <div className="poster-placeholder">
+              <div className="placeholder-content">
+                <div className="placeholder-icon">🤖</div>
+                <p>AI is generating your poster...</p>
+                <p>This may take a few moments</p>
+              </div>
+            </div>
+          ) : generatedPoster ? (
             <div className="poster-preview">
               <img src={generatedPoster} alt="Generated poster" />
               <div className="poster-actions">
