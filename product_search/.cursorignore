@@ -1,0 +1,14 @@
+# Ignore environment files
+.env
+.env.*
+
+# Ignore Python cache and virtual environment
+__pycache__/
+*.pyc
+venv/
+
+# Ignore data files you don’t want Cursor AI to track
+data/boycott_brands.json
+
+# Ignore VS Code workspace settings
+.vscode/

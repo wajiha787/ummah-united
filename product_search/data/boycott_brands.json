@@ -1,0 +1,603 @@
+[
+  {
+    "brand": "Coca-Cola",
+    "category": "Beverages",
+    "boycott_reason": "Accused of supporting Israeli military operations.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "Pepsi",
+    "category": "Beverages",
+    "boycott_reason": "Reportedly funds Israeli military.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "Nestlé",
+    "category": "Food & Beverages",
+    "boycott_reason": "Accused of unethical practices.",
+    "pakistani_alternatives": ["National Foods", "Shan Foods", "Hico"]
+  },
+  {
+    "brand": "Unilever",
+    "category": "Consumer Goods",
+    "boycott_reason": "Alleged support for Israeli operations.",
+    "pakistani_alternatives": ["Engro Foods", "Nurpur", "Glow & Lovely Pakistan"]
+  },
+  {
+    "brand": "Starbucks",
+    "category": "Coffee Chains",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Chai Wala", "Chai Shai", "Chai Wala Express"]
+  },
+  {
+    "brand": "McDonald's",
+    "category": "Fast Food",
+    "boycott_reason": "Alleged support for Israeli military.",
+    "pakistani_alternatives": ["OPTp", "Student Biryani", "Bundu Khan"]
+  },
+  {
+    "brand": "Nike",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Adidas",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Apple",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["QMobile", "Infinix", "Huawei"]
+  },
+  {
+    "brand": "Microsoft",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Systems Limited", "Techlogix", "Pakistani Software Solutions"]
+  },
+  {
+    "brand": "Facebook",
+    "category": "Social Media",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pakistani Social Networks", "Social Pakistan", "PakConnect"]
+  },
+  {
+    "brand": "Twitter",
+    "category": "Social Media",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pakistani Microblogs", "PakConnect", "Social Pakistan"]
+  },
+  {
+    "brand": "Google",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["PakSearch", "PakFind", "Pakistani Search Engines"]
+  },
+  {
+    "brand": "Amazon",
+    "category": "E-commerce",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Daraz", "PakWheels", "HomeShopping"]
+  },
+  {
+    "brand": "eBay",
+    "category": "E-commerce",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Daraz", "PakWheels", "HomeShopping"]
+  },
+  {
+    "brand": "Uber",
+    "category": "Transportation",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Careem Pakistan", "Bykea", "Swvl"]
+  },
+  {
+    "brand": "Intel",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pakistani Chip Solutions", "Systems Limited", "Techlogix"]
+  },
+  {
+    "brand": "Sony",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pakistani Electronics", "Haier Pakistan", "QMobile"]
+  },
+  {
+    "brand": "LG",
+    "category": "Technology & Appliances",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "Orient Electronics"]
+  },
+  {
+    "brand": "Samsung",
+    "category": "Technology & Appliances",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "QMobile"]
+  },
+  {
+    "brand": "Toyota",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Honda Atlas Cars", "Prince Motors"]
+  },
+  {
+    "brand": "Honda",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Toyota Indus", "Prince Motors"]
+  },
+  {
+    "brand": "Ford",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Master Motors", "Prince Motors"]
+  },
+  {
+    "brand": "Chevrolet",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Master Motors", "Prince Motors"]
+  },
+  {
+    "brand": "Gillette",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Habib Razors", "Pak Shaving", "National Shaving"]
+  },
+  {
+    "brand": "Head & Shoulders",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Sunsilk Pakistan", "Engro Personal Care", "Saeed Ghani"]
+  },
+  {
+    "brand": "Pampers",
+    "category": "Baby Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Huggies Pakistan", "MamyPoko Pakistan", "Sofy Pakistan"]
+  },
+  {
+    "brand": "Olay",
+    "category": "Cosmetics",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Glow & Lovely Pakistan", "Saeed Ghani", "Nivea Pakistan"]
+  },
+  {
+    "brand": "Pantene",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Sunsilk Pakistan", "Glow & Lovely Pakistan", "Engro Personal Care"]
+  },
+  {
+    "brand": "Always",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Himalaya Sanitary", "Always Pakistan", "Sofy Pakistan"]
+  },
+  {
+    "brand": "Fair & Lovely",
+    "category": "Cosmetics",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Glow & Lovely Pakistan", "Saeed Ghani", "Nivea Pakistan"]
+  },
+  {
+    "brand": "Rexona",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Lifebuoy Pakistan", "Sunsilk Pakistan", "Engro Personal Care"]
+  },
+  {
+    "brand": "Axe",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Engro Personal Care", "Sunsilk Pakistan", "Glow & Lovely Pakistan"]
+  },
+  {
+    "brand": "Lipton",
+    "category": "Beverages",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Vital Tea", "Tapal Tea", "Mashall Tea"]
+  },
+  {
+    "brand": "Knorr",
+    "category": "Seasonings",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Shan Foods", "National Foods", "Bake Parlor"]
+  },
+  {
+    "brand": "Hellmann's",
+    "category": "Food & Condiments",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["National Foods", "Shan Foods", "Bake Parlor"]
+  },
+  {
+    "brand": "Ben & Jerry's",
+    "category": "Food & Ice Cream",
+    "boycott_reason": "Owned by Unilever, actively boycotted for Israel support.",
+    "pakistani_alternatives": ["Igloo Ice Cream", "Hico Ice Cream", "Burgers & Cream Pakistan"]
+  },
+  {
+    "brand": "Magnum",
+    "category": "Food & Ice Cream",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Igloo Ice Cream", "Hico Ice Cream", "Burgers & Cream Pakistan"]
+  },
+  {
+    "brand": "Lipton Ice Tea",
+    "category": "Beverages",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Vital Tea", "Tapal Tea", "Mashall Tea"]
+  },
+  {
+    "brand": "Fanta",
+    "category": "Beverages",
+    "boycott_reason": "Owned by Coca-Cola, supports Israel.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "Sprite",
+    "category": "Beverages",
+    "boycott_reason": "Owned by Coca-Cola, supports Israel.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "7UP",
+    "category": "Beverages",
+    "boycott_reason": "Owned by PepsiCo, supports Israel.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "Mountain Dew",
+    "category": "Beverages",
+    "boycott_reason": "Owned by PepsiCo, supports Israel.",
+    "pakistani_alternatives": ["Pakola", "Shezan", "Soda Club"]
+  },
+  {
+    "brand": "Doritos",
+    "category": "Snacks",
+    "boycott_reason": "Owned by PepsiCo/ Frito-Lay, supports Israel.",
+    "pakistani_alternatives": ["Peppy Chips", "CandyLand", "Treat"]
+  },
+  {
+    "brand": "Cheetos",
+    "category": "Snacks",
+    "boycott_reason": "Owned by PepsiCo/ Frito-Lay, supports Israel.",
+    "pakistani_alternatives": ["Peppy Chips", "CandyLand", "Treat"]
+  },
+  {
+    "brand": "Toblerone",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "Lindt",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "Heinz",
+    "category": "Food & Condiments",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["National Foods", "Shan Foods", "Bake Parlor"]
+  },
+  {
+    "brand": "KFC",
+    "category": "Fast Food",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["OPTp", "Student Biryani", "Bundu Khan"]
+  },
+  {
+    "brand": "Pizza Hut",
+    "category": "Fast Food",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["OPTp", "Student Biryani", "Bundu Khan"]
+  },
+  {
+    "brand": "Domino's Pizza",
+    "category": "Fast Food",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["OPTp", "Student Biryani", "Bundu Khan"]
+  },
+  {
+    "brand": "Burger King",
+    "category": "Fast Food",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["OPTp", "Student Biryani", "Bundu Khan"]
+  },
+  {
+    "brand": "Starbucks Coffee",
+    "category": "Coffee Chains",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Chai Wala", "Chai Shai", "Chai Wala Express"]
+  },
+  {
+    "brand": "Reebok",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Puma",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "H&M",
+    "category": "Apparel",
+    "boycott_reason": "Alleged support for Israel.",
+    "pakistani_alternatives": ["Outfitters", "Khaadi", "Sapphire"]
+  },
+  {
+    "brand": "Zara",
+    "category": "Apparel",
+    "boycott_reason": "Alleged support for Israel.",
+    "pakistani_alternatives": ["Outfitters", "Khaadi", "Sapphire"]
+  },
+  {
+    "brand": "Forever 21",
+    "category": "Apparel",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Outfitters", "Khaadi", "Sapphire"]
+  },
+  {
+    "brand": "Levi's",
+    "category": "Apparel & Denim",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Denim Co", "Outfitters", "Khaadi"]
+  },
+  {
+    "brand": "Gap",
+    "category": "Apparel",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Outfitters", "Khaadi", "Sapphire"]
+  },
+  {
+    "brand": "Canon",
+    "category": "Technology & Electronics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "QMobile"]
+  },
+  {
+    "brand": "Nikon",
+    "category": "Technology & Electronics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "QMobile"]
+  },
+  {
+    "brand": "Dell",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Systems Limited", "Techlogix", "Pakistani Software Solutions"]
+  },
+  {
+    "brand": "HP",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Systems Limited", "Techlogix", "Pakistani Software Solutions"]
+  },
+  {
+    "brand": "Lenovo",
+    "category": "Technology",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Systems Limited", "Techlogix", "Pakistani Software Solutions"]
+  },
+  {
+    "brand": "Sony Pictures",
+    "category": "Entertainment",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Geo Films", "ARY Films", "Eveready Entertainment"]
+  },
+  {
+    "brand": "Disney",
+    "category": "Entertainment",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["ARY Films", "Eveready Entertainment", "Geo Films"]
+  },
+  {
+    "brand": "Netflix",
+    "category": "Entertainment",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Tapmad TV", "ARY Digital App", "SeePrime"]
+  },
+  {
+    "brand": "Johnson & Johnson",
+    "category": "Personal Care & Baby",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Hamdard Personal Care", "Engro Personal Care", "Saeed Ghani"]
+  },
+  {
+    "brand": "Colgate",
+    "category": "Personal Care",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Signal Pakistan", "Saeed Ghani", "Engro Personal Care"]
+  },
+  {
+    "brand": "Peugeot",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Master Motors", "Prince Motors"]
+  },
+  {
+    "brand": "Nissan",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Master Motors", "Prince Motors"]
+  },
+  {
+    "brand": "Mazda",
+    "category": "Automotive",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Pak Suzuki", "Master Motors", "Prince Motors"]
+  },
+  {
+    "brand": "Red Bull",
+    "category": "Beverages",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Tapal Energy Drink", "Shezan Energy", "Pakola Energy"]
+  },
+  {
+    "brand": "Monster Energy",
+    "category": "Beverages",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Tapal Energy Drink", "Shezan Energy", "Pakola Energy"]
+  },
+  {
+    "brand": "PepsiCo Snacks",
+    "category": "Snacks",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Peppy Chips", "CandyLand", "Treat"]
+  },
+  {
+    "brand": "Mars",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "Nestlé Ice Cream",
+    "category": "Food & Ice Cream",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Igloo Ice Cream", "Hico Ice Cream", "Burgers & Cream Pakistan"]
+  },
+  {
+    "brand": "Cadbury",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "M&M's",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "Snickers",
+    "category": "Food & Confectionery",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["CandyLand", "Treat", "Hico"]
+  },
+  {
+    "brand": "Tide",
+    "category": "Household Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Surf Excel Pakistan", "Engro Household", "Dawn Laundry"]
+  },
+  {
+    "brand": "Ariel",
+    "category": "Household Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Surf Excel Pakistan", "Engro Household", "Dawn Laundry"]
+  },
+  {
+    "brand": "Vicks",
+    "category": "Healthcare",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Hamdard Healthcare", "Saeed Ghani Healthcare", "Engro Personal Care"]
+  },
+  {
+    "brand": "L'Oréal",
+    "category": "Cosmetics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Glow & Lovely Pakistan", "Saeed Ghani", "Nivea Pakistan"]
+  },
+  {
+    "brand": "Dove",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Unilever, supports Israel.",
+    "pakistani_alternatives": ["Sunsilk Pakistan", "Glow & Lovely Pakistan", "Engro Personal Care"]
+  },
+  {
+    "brand": "Maybelline",
+    "category": "Cosmetics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Glow & Lovely Pakistan", "Saeed Ghani", "Nivea Pakistan"]
+  },
+  {
+    "brand": "Gillette Venus",
+    "category": "Personal Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Habib Razors", "Pak Shaving", "National Shaving"]
+  },
+  {
+    "brand": "Chanel",
+    "category": "Cosmetics & Fashion",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Saeed Ghani", "Glow & Lovely Pakistan", "Nivea Pakistan"]
+  },
+  {
+    "brand": "Burberry",
+    "category": "Fashion",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Khaadi", "Outfitters", "Sapphire"]
+  },
+  {
+    "brand": "Rolex",
+    "category": "Watches",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Orient Watches Pakistan", "Casio Pakistan", "Citizen Pakistan"]
+  },
+  {
+    "brand": "Omega",
+    "category": "Watches",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Orient Watches Pakistan", "Casio Pakistan", "Citizen Pakistan"]
+  },
+  {
+    "brand": "Pampers Baby Wipes",
+    "category": "Baby Care",
+    "boycott_reason": "Owned by Procter & Gamble, supports Israel.",
+    "pakistani_alternatives": ["Huggies Pakistan", "MamyPoko Pakistan", "Sofy Pakistan"]
+  },
+  {
+    "brand": "Vans",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Converse",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Under Armour",
+    "category": "Apparel & Footwear",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Servis Shoes", "Bata Pakistan", "Stylo Shoes"]
+  },
+  {
+    "brand": "Asus",
+    "category": "Technology & Electronics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "QMobile"]
+  },
+  {
+    "brand": "Acer",
+    "category": "Technology & Electronics",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["Haier Pakistan", "Pakistani Electronics", "QMobile"]
+  },
+  {
+    "brand": "BlackBerry",
+    "category": "Technology & Communications",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["QMobile", "Infinix", "Huawei"]
+  },
+  {
+    "brand": "Motorola",
+    "category": "Technology & Communications",
+    "boycott_reason": "Reported support for Israeli military.",
+    "pakistani_alternatives": ["QMobile", "Infinix", "Huawei"]
+  }
+]
+  
