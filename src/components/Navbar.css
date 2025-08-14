@@ -21,6 +21,7 @@
 .navbar-brand {
   text-decoration: none;
   flex-shrink: 0;
+  margin-left: -17rem;
 }
 
 .logo-container {
