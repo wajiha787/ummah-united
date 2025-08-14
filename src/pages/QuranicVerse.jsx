@@ -5,54 +5,108 @@ function QuranicVerse() {
   const [currentVerse, setCurrentVerse] = useState(0)
   const [showTranslation, setShowTranslation] = useState(true)
   const [showTafsir, setShowTafsir] = useState(false)
+  
+  // Quran Chatbot states
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false)
+  const [chatbotQuestion, setChatbotQuestion] = useState('')
+  const [isChatbotLoading, setIsChatbotLoading] = useState(false)
+  const [chatbotAnswer, setChatbotAnswer] = useState('')
+  const [chatbotError, setChatbotError] = useState('')
+
+  // Daily Hadith states
+  const [showHadithPopup, setShowHadithPopup] = useState(false)
+  const [currentHadithIndex, setCurrentHadithIndex] = useState(0)
+
+  const hadiths = [
+    {
+      id: 1,
+      title: "The Ummah as One Body",
+      text: "The believers, in their mutual kindness, compassion, and sympathy, are just like one body. When one of the limbs suffers, the whole body responds to it with wakefulness and fever.",
+      source: "Sahih al-Bukhari, Sahih Muslim"
+    },
+    {
+      id: 2,
+      title: "Helping the Oppressed",
+      text: "Help your brother, whether he is an oppressor or is oppressed. They said, 'O Messenger of Allah, we help the oppressed, but how do we help the oppressor?' He said, 'By preventing him from oppressing others.'",
+      source: "Sahih al-Bukhari"
+    },
+    {
+      id: 3,
+      title: "Relieving Distress",
+      text: "Whoever relieves a believer's distress of the distressful aspects of this world, Allah will rescue him from a difficulty of the difficulties of the Hereafter.",
+      source: "Sahih Muslim"
+    },
+    {
+      id: 4,
+      title: "Standing Against Injustice",
+      text: "The best jihad is a word of truth before a tyrant ruler.",
+      source: "Sunan an-Nasa'i, Sunan Abu Dawood"
+    },
+    {
+      id: 5,
+      title: "Loving for Others",
+      text: "None of you truly believes until he loves for his brother what he loves for himself.",
+      source: "Sahih al-Bukhari, Sahih Muslim"
+    },
+    {
+      id: 6,
+      title: "Reward for Charity",
+      text: "The believer's shade on the Day of Resurrection will be his charity.",
+      source: "Sahih al-Bukhari"
+    },
+    {
+      id: 7,
+      title: "Mutual Mercy",
+      text: "The merciful are shown mercy by the Most Merciful. Be merciful to those on the earth and the One above the heavens will have mercy upon you.",
+      source: "Sunan al-Tirmidhi"
+    }
+  ]
 
   const verses = [
     {
       id: 1,
-      surah: 'Al-Baqarah',
-      ayah: 256,
-      arabic: 'لَا إِكْرَاهَ فِي الدِّينِ ۖ قَد تَّبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ ۚ فَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ لَا انفِصَامَ لَهَا ۗ وَاللَّهُ سَمِيعٌ عَلِيمٌ',
-      translation: 'There is no compulsion in religion. The right direction is henceforth distinct from error. And he who rejecteth false deities and believeth in Allah hath grasped a firm handhold which will never break. Allah is Hearer, Knower.',
-      tafsir: 'This verse emphasizes the principle of religious freedom in Islam. It states that no one should be forced to accept any religion, as the truth has been made clear from falsehood. The verse teaches that faith must come from conviction, not coercion.',
-      theme: 'Religious Freedom'
+      surah: 'Surah Ibrahim',
+      ayah: 14,
+      arabic: 'وَلَنُسْكِنَنَّكُمُ ٱلْأَرْضَ مِنۢ بَعْدِهِمْ ۚ ذَٰلِكَ لِمَنْ خَافَ مَقَامِى وَخَافَ وَعِيدِ',
+      translation: 'And make you reside in the land after them. This is for whoever is in awe of standing before Me and fears My warning.',
+      tafsir: 'This verse promises that the righteous will inherit and reside in the land after the oppressors are removed. It emphasizes that this promise is specifically for those who fear Allah and are conscious of standing before Him on the Day of Judgment. This provides hope for justice and divine intervention.',
+      theme: 'Promise of Land Inheritance'
     },
     {
       id: 2,
-      surah: 'Al-Hujurat',
-      ayah: 13,
-      arabic: 'يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ',
-      translation: 'O mankind! We have created you from a male and a female, and made you into nations and tribes, that you may know one another. Verily, the most honorable of you with Allah is that (believer) who has At-Taqwa (piety and righteousness). Verily, Allah is All-Knowing, All-Aware.',
-      tafsir: 'This verse teaches that all human beings are equal in the sight of Allah, regardless of their race, ethnicity, or social status. The only criterion for superiority is piety and righteousness. It promotes unity and understanding among different nations and tribes.',
-      theme: 'Human Equality'
+      surah: 'Surah An-Nisa',
+      ayah: 4,
+      arabic: 'وَمَا لَكُمْ لَا تُقَـٰتِلُونَ فِى سَبِيلِ ٱللَّهِ وَٱلْمُسْتَضْعَفِينَ مِنَ ٱلرِّجَالِ وَٱلنِّسَآءِ وَٱلْوِلْدَٰنِ',
+      translation: 'And what is [the matter] with you that you fight not in the cause of Allah and for the oppressed among men, women, and children?',
+      tafsir: 'This verse emphasizes the duty to fight for justice and protect the oppressed, including vulnerable groups like women and children. It calls upon believers to stand up against oppression and defend the rights of the weak.',
+      theme: 'Helping the Oppressed'
     },
     {
       id: 3,
-      surah: 'Al-Ma\'idah',
-      ayah: 32,
-      arabic: 'مِنْ أَجْلِ ذَٰلِكَ كَتَبْنَا عَلَىٰ بَنِي إِسْرَائِيلَ أَنَّهُ مَن قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا',
-      translation: 'Because of that, We decreed upon the Children of Israel that whoever kills a soul unless for a soul or for corruption [done] in the land - it is as if he had slain mankind entirely. And whoever saves one - it is as if he had saved mankind entirely.',
-      tafsir: 'This verse establishes the sanctity of human life and the principle that killing one innocent person is equivalent to killing all of humanity. It also teaches that saving one life is equivalent to saving all of humanity, emphasizing the value of every human life.',
-      theme: 'Sanctity of Life'
+      surah: 'Surah Al-Hajj',
+      ayah: 22,
+      arabic: 'إِنَّ ٱللَّهَ يُدَافِعُ عَنِ ٱلَّذِينَ ءَامَنُوٓا۟',
+      translation: 'Indeed, Allah defends those who have believed.',
+      tafsir: 'This verse assures believers that Allah Himself will defend and protect those who have faith. It provides comfort to the oppressed that they are not alone in their struggle.',
+      theme: 'Allah is with the Oppressed'
     },
     {
       id: 4,
-      surah: 'Al-Imran',
-      ayah: 103,
-      arabic: 'وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِ إِخْوَانًا',
-      translation: 'And hold firmly to the rope of Allah all together and do not become divided. And remember the favor of Allah upon you - when you were enemies and He brought your hearts together and you became, by His favor, brothers.',
-      tafsir: 'This verse calls for unity among Muslims and warns against division. It reminds believers to hold fast to Allah\'s guidance collectively and not to split into factions. It also reminds them of Allah\'s blessing in uniting their hearts after they were enemies.',
-      theme: 'Unity'
-    },
-    {
-      id: 5,
-      surah: 'Al-Furqan',
-      ayah: 63,
-      arabic: 'وَعِبَادُ الرَّحْمَٰنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا',
-      translation: 'And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace.',
-      tafsir: 'This verse describes the characteristics of the true servants of Allah. They walk humbly on earth and respond to ignorance with peace and wisdom, showing patience and forgiveness even when faced with harsh words.',
-      theme: 'Humility and Peace'
+      surah: 'Surah Aal-e-Imran',
+      ayah: 3,
+      arabic: 'إِن يَنصُرْكُمُ ٱللَّهُ فَلَا غَالِبَ لَكُمْ',
+      translation: 'If Allah helps you, none can overcome you.',
+      tafsir: 'This verse provides ultimate hope and assurance that with Allah\'s help, no force can overcome the believers. It reinforces the power of divine assistance in the struggle for justice.',
+      theme: 'Promise of Allah\'s Help'
     }
   ]
+
+  // Get current day of the week (0-6) to determine which Hadith to show
+  useEffect(() => {
+    const today = new Date().getDay() // 0 = Sunday, 1 = Monday, etc.
+    setCurrentHadithIndex(today)
+    setShowHadithPopup(true)
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,13 +124,105 @@ function QuranicVerse() {
     setCurrentVerse((prev) => (prev - 1 + verses.length) % verses.length)
   }
 
+  const handleChatbotSubmit = async (e) => {
+    e.preventDefault()
+    if (!chatbotQuestion.trim()) {
+      setChatbotError('Please enter your question.')
+      return
+    }
+
+    setIsChatbotLoading(true)
+    setChatbotError('')
+    setChatbotAnswer('')
+
+    try {
+      const response = await fetch('/api/quran', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_question: chatbotQuestion
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get answer. Please try again.')
+      }
+
+      const data = await response.json()
+      setChatbotAnswer(data.answer)
+    } catch (err) {
+      setChatbotError(err.message || 'An error occurred while processing your question.')
+    } finally {
+      setIsChatbotLoading(false)
+    }
+  }
+
+  const resetChatbot = () => {
+    setChatbotQuestion('')
+    setChatbotAnswer('')
+    setChatbotError('')
+  }
+
+  const closeHadithPopup = () => {
+    setShowHadithPopup(false)
+  }
+
   const currentVerseData = verses[currentVerse]
+  const currentHadith = hadiths[currentHadithIndex]
 
   return (
     <div className="quranic-verse">
+      {/* Daily Hadith Popup */}
+      {showHadithPopup && (
+        <div className="hadith-popup-overlay" onClick={closeHadithPopup}>
+          <div className="hadith-popup" onClick={(e) => e.stopPropagation()}>
+            <div className="hadith-popup-header">
+              <div className="hadith-popup-title">
+                <span className="hadith-popup-icon">📖</span>
+                <div>
+                  <h2>Daily Hadith</h2>
+                </div>
+              </div>
+              <button className="hadith-popup-close-button" onClick={closeHadithPopup}>×</button>
+            </div>
+
+            <div className="hadith-popup-content">
+              <div className="hadith-content">
+                <h3 className="hadith-title">{currentHadith.title}</h3>
+                <div className="hadith-text">
+                  <p>"{currentHadith.text}"</p>
+                </div>
+                <div className="hadith-source">
+                  <span>Source: {currentHadith.source}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="page-header">
-        <h1>Daily Quranic Verses</h1>
-        <p>Reflect on the wisdom and guidance from the Holy Quran</p>
+        <h1>Quranic Verses About Palestine</h1>
+        <p>Reflect on the sacred status of the Holy Land and its divine significance</p>
+      </div>
+
+      {/* Quran/Hadith Chatbot Section */}
+      <div className="quran-chatbot-section">
+        <div className="quran-chatbot-section-header">
+          <div className="quran-chatbot-section-icon">📖</div>
+          <div className="quran-chatbot-section-content">
+            <h2>Ask About Palestine in Quran & Hadith</h2>
+            <p>Get answers about Islamic stories, verses, and history related to Palestine and the Holy Land</p>
+          </div>
+          <button 
+            className="quran-chatbot-section-button"
+            onClick={() => setIsChatbotOpen(true)}
+          >
+            Ask Question
+          </button>
+        </div>
       </div>
 
       <div className="verse-container">
@@ -106,7 +252,7 @@ function QuranicVerse() {
             {showTranslation && (
               <div className="translation">
                 <h3>Translation</h3>
-                <p>{currentVerseData.translation}</p>
+                <p className="english-translation">{currentVerseData.translation}</p>
               </div>
             )}
 
@@ -149,34 +295,95 @@ function QuranicVerse() {
         </div>
       </div>
 
-      <div className="reflection-section">
-        <h2>Daily Reflection</h2>
-        <div className="reflection-content">
-          <p>
-            Take a moment to reflect on the meaning of this verse and how it applies to your daily life. 
-            Consider how you can implement its teachings in your interactions with others and in your 
-            personal growth.
-          </p>
-          
-          <div className="reflection-prompts">
-            <h3>Reflection Questions:</h3>
-            <ul>
-              <li>How does this verse relate to current events?</li>
-              <li>What actions can I take to embody these teachings?</li>
-              <li>How can I share this wisdom with others?</li>
-              <li>What does this verse teach me about my relationship with Allah?</li>
-            </ul>
+      {/* Quran Chatbot Modal */}
+      {isChatbotOpen && (
+        <div className="quran-chatbot-modal-overlay" onClick={() => setIsChatbotOpen(false)}>
+          <div className="quran-chatbot-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="quran-chatbot-modal-header">
+              <div className="quran-chatbot-modal-title">
+                <span className="quran-chatbot-modal-avatar">📖</span>
+                <div>
+                  <h2>Islamic Knowledge Assistant</h2>
+                  <p>Ask about Palestine in Quran, Hadith, and Islamic history</p>
+                </div>
+              </div>
+              <button className="quran-chatbot-close-button" onClick={() => setIsChatbotOpen(false)}>×</button>
+            </div>
+
+            <div className="quran-chatbot-modal-content">
+              <form onSubmit={handleChatbotSubmit} className="quran-chatbot-form">
+                <div className="form-group">
+                  <label htmlFor="quran-question">Ask your question:</label>
+                  <textarea
+                    id="quran-question"
+                    value={chatbotQuestion}
+                    onChange={(e) => setChatbotQuestion(e.target.value)}
+                    placeholder="Ask about Quranic verses, Hadith, or Islamic stories related to Palestine..."
+                    rows="4"
+                    className="quran-question-input"
+                    disabled={isChatbotLoading}
+                  />
+                </div>
+
+                <div className="quran-chatbot-actions">
+                  <button 
+                    type="submit" 
+                    className="quran-chatbot-submit-button"
+                    disabled={isChatbotLoading}
+                  >
+                    {isChatbotLoading ? 'Getting Answer...' : 'Ask Question'}
+                  </button>
+                  <button 
+                    type="button" 
+                    className="quran-chatbot-reset-button"
+                    onClick={resetChatbot}
+                    disabled={isChatbotLoading}
+                  >
+                    Reset
+                  </button>
+                </div>
+
+                {chatbotError && (
+                  <div className="quran-chatbot-error">
+                    {chatbotError}
+                  </div>
+                )}
+              </form>
+
+              {isChatbotLoading && (
+                <div className="quran-chatbot-loading">
+                  <div className="loading-spinner"></div>
+                  <p>Searching Islamic sources...</p>
+                </div>
+              )}
+
+              {chatbotAnswer && (
+                <div className="quran-chatbot-answer">
+                  <div className="quran-chatbot-answer-header">
+                    <span className="quran-chatbot-answer-avatar">📖</span>
+                    <h3>Islamic Answer:</h3>
+                  </div>
+                  <div className="quran-answer-content">
+                    {chatbotAnswer.split('\n').map((line, index) => (
+                      <p key={index} className="quran-answer-line">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="prayer-section">
-        <h2>Prayer for Today</h2>
+        <h2>Prayer for Palestine</h2>
         <div className="prayer-text">
           <p>
-            "O Allah, help us to understand and implement the teachings of Your Book in our daily lives. 
-            Grant us the wisdom to apply these verses in our interactions with others. Strengthen our 
-            faith and guide us on the straight path. Ameen."
+            "O Allah, protect the blessed land of Palestine and its people. Grant peace and justice to the Holy Land. 
+            Help us to understand the sacred nature of this land and guide us to support those who are oppressed. 
+            Grant victory to the truth and protect the innocent. Ameen."
           </p>
         </div>
       </div>
