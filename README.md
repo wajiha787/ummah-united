@@ -128,6 +128,10 @@ We would like to express our deepest gratitude to the amazing team of collaborat
 - **Contribution**: Daily Code Generator for Quranic Verse section
 - **Role**: Quranic verse generation, daily hadith implementation, and spiritual content development
 
+### 🌟 **Aqsa** 
+- **Contribution**: Funding & Donation Platform development
+- **Role**: Campaign management interface and fundraising features implementation
+
 ---
 
 **Special Thanks** 🙏
