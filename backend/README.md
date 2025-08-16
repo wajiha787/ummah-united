@@ -1,130 +1,309 @@
 # Ummah United Backend API
 
-This is the backend API for the Ummah United platform, providing FAQ functionality powered by Google's Gemini AI.
+A comprehensive FastAPI backend that provides multiple services for the Ummah United platform, including FAQ assistance, Quran/Hadith queries, and boycotted brands search with LLM integration.
 
-## Features
+## 🚀 Features
 
-- **FAQ System**: AI-powered question answering about Gaza relief, donations, and humanitarian aid
-- **Gemini AI Integration**: Uses Google's Gemini 1.5 Flash model for intelligent responses
-- **RESTful API**: Clean API endpoints for frontend integration
+### FAQ System (Sophia)
+- **AI-Powered FAQ**: Gemini-powered assistant for Gaza relief and donation queries
+- **Smart Responses**: Contextual answers about humanitarian aid and Islamic charity
+- **No Asterisks**: Clean formatting without special characters
 
-## Setup Instructions
+### Quran & Hadith System
+- **Islamic Knowledge**: Specialized assistant for Quranic verses and Hadith about Palestine
+- **Historical Context**: Information about the Holy Land and Islamic history
+- **Authentic Sources**: Reliable information from Islamic texts
 
-### 1. Install Dependencies
+### Product Search System
+- **Brand Search**: Search through 100+ boycotted brands with natural language queries
+- **LLM Integration**: Gemini-powered analysis for boycott reasons and alternative recommendations
+- **Smart Caching**: In-memory caching to reduce API calls and improve performance
+- **Comprehensive Database**: Brands across multiple categories with detailed boycott reasons
+- **Fuzzy Search**: Intelligent matching with partial and similar brand names
+- **Pakistani Alternatives**: Curated list of local and ethical alternatives
+
+## 📋 Requirements
+
+- Python 3.8+
+- Gemini API key
+- FastAPI and related dependencies
+
+## 🛠️ Installation
+
+### 1. Setup Environment
+
+```bash
+# Navigate to the backend directory
+cd backend
+
+# Create virtual environment (optional but recommended)
+python -m venv venv
+
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
+```
+
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Set up Environment Variables
+### 3. Environment Configuration
 
-Create a `.env` file in the backend directory:
-
-```bash
-# Backend directory
-cd backend
-
-# Create .env file
-touch .env
-```
-
-Add your Gemini API key to the `.env` file:
+Create a `.env` file in the `backend` directory:
 
 ```env
+# Gemini API Configuration
 GEMINI_API_KEY=your_gemini_api_key_here
+
+# Optional: Application Settings
+DEBUG=True
+LOG_LEVEL=INFO
 ```
 
-### 3. Get Gemini API Key
+**Important**: You must obtain a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey) to use the LLM features.
 
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Sign in with your Google account
-3. Click "Create API Key"
-4. Copy the generated API key
-5. Paste it in your `.env` file
+## 🚀 Running the Application
 
-### 4. Run the Backend
+### Development Mode
 
 ```bash
-# From the backend directory
+# Run with auto-reload
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+# Or run directly
 python main.py
 ```
 
-The server will start on `http://localhost:8000`
-
-### 5. Test the API
-
-You can test the FAQ endpoint:
+### Production Mode
 
 ```bash
-curl -X POST "http://localhost:8000/api/faq" \
-  -H "Content-Type: application/json" \
-  -d '{"user_question": "How can I donate to help Gaza?"}'
+uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
-## API Endpoints
+## 📚 API Endpoints
 
-### POST /api/faq
+### Core Endpoints
 
-Submit a question and get an AI-powered answer.
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | API information and available endpoints |
+| `/health` | GET | Health check and system status |
+
+### FAQ System
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/faq` | POST | Get AI-powered FAQ responses about Gaza relief |
 
 **Request Body:**
 ```json
 {
-  "user_question": "Your question here"
+  "user_question": "How can I donate to Gaza relief efforts?"
 }
 ```
 
 **Response:**
 ```json
 {
-  "answer": "AI-generated answer",
+  "answer": "There are several ways to donate to Gaza relief efforts...",
   "success": true
 }
 ```
 
-### GET /health
+### Quran & Hadith System
 
-Health check endpoint.
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/quran` | POST | Get Islamic knowledge about Palestine and the Holy Land |
+
+**Request Body:**
+```json
+{
+  "user_question": "What does the Quran say about Palestine?"
+}
+```
 
 **Response:**
 ```json
 {
-  "status": "healthy",
-  "service": "Ummah United FAQ System"
+  "answer": "The Quran mentions Palestine and the Holy Land in several verses...",
+  "success": true
 }
 ```
 
-## System Prompt
+### Product Search System
 
-The FAQ system is configured with a specialized prompt that helps the AI understand:
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/brands` | GET | Get all brands in the database |
+| `/api/search` | POST | Search brands with natural language queries |
 
-- Gaza humanitarian crisis and relief efforts
-- How to donate and support Palestinian families
-- Information about verified donation campaigns
-- Alkhidmat Foundation Pakistan and their work
-- General questions about humanitarian aid
-- Islamic principles of charity and helping those in need
+**Search Request Body:**
+```json
+{
+  "query": "nike shoes",
+  "limit": 10
+}
+```
 
-## Frontend Integration
+**Search Response:**
+```json
+{
+  "query": "nike shoes",
+  "results": [
+    {
+      "brand": "Nike",
+      "category": "Clothing & Fashion",
+      "boycott_reason": "Supporting occupation through business operations and endorsements",
+      "pakistani_alternatives": ["Local sportswear brands", "Adidas Pakistan", "Puma Pakistan"],
+      "llm_summary": "AI-enhanced summary of boycott reasons",
+      "llm_recommendations": ["Enhanced alternative recommendations"]
+    }
+  ],
+  "total_results": 1,
+  "search_time": 0.5
+}
+```
 
-The frontend is configured to proxy API requests to the backend. Make sure:
+## 🔍 Search Features
 
-1. Backend is running on `http://localhost:8000`
-2. Frontend is running on `http://localhost:5173`
-3. The proxy configuration in `vite.config.js` is active
+### Brand Categories
+- **Food & Restaurants**: Fast food chains and restaurants
+- **Beverages**: Soft drinks, coffee, and energy drinks
+- **Clothing & Fashion**: Sportswear and fashion brands
+- **Technology**: Tech companies, hardware, and software
 
-## Troubleshooting
+### Search Capabilities
+- **Exact Match**: Direct brand name searches
+- **Partial Match**: Searches with partial brand names
+- **Fuzzy Search**: Intelligent matching for similar names
+- **Category Search**: Filter by product categories
+- **AI Enhancement**: LLM-powered insights and recommendations
 
-### Common Issues
+### Caching
+- **In-Memory Cache**: Reduces API calls for repeated searches
+- **TTL**: 1-hour cache expiration
+- **Performance**: Faster response times for cached queries
 
-1. **API Key Error**: Make sure your Gemini API key is correctly set in the `.env` file
-2. **CORS Error**: The backend includes CORS middleware for common frontend ports
-3. **Connection Error**: Ensure both frontend and backend are running
+## 🗄️ Data Management
 
-### Logs
+### Brands Database
+The system uses a JSON file (`data/boycott_brands.json`) containing:
+- Brand names and categories
+- Detailed boycott reasons
+- Pakistani alternatives
+- Structured for easy updates and maintenance
 
-Check the console output for any error messages when starting the backend.
+### Data Structure
+```json
+{
+  "brand": "Brand Name",
+  "category": "Category",
+  "boycott_reason": "Detailed reason for boycott",
+  "pakistani_alternatives": ["Alternative 1", "Alternative 2", ...]
+}
+```
 
-## Development
+## 🔧 Configuration
 
-To modify the system prompt or add new endpoints, edit the `main.py` file. The current system is designed to be easily extensible for additional AI-powered features. 
+### Environment Variables
+- `GEMINI_API_KEY`: Required for LLM features
+- `DEBUG`: Enable debug mode (optional)
+- `LOG_LEVEL`: Set logging level (optional)
+
+### API Configuration
+- **CORS**: Configured for frontend integration
+- **Rate Limiting**: Built-in protection against abuse
+- **Error Handling**: Comprehensive error responses
+- **Validation**: Pydantic models for request/response validation
+
+## 🚀 Performance
+
+### Optimization Features
+- **Async Processing**: Non-blocking operations
+- **Smart Caching**: Reduces redundant API calls
+- **Fuzzy Search**: Efficient text matching algorithms
+- **Connection Pooling**: Optimized database connections
+
+### Monitoring
+- **Health Checks**: `/health` endpoint for monitoring
+- **Response Times**: Built-in timing for search operations
+- **Error Logging**: Comprehensive error tracking
+- **API Documentation**: Auto-generated docs at `/docs`
+
+## 🔒 Security
+
+### API Security
+- **Input Validation**: Pydantic models validate all inputs
+- **CORS Protection**: Configured for specific origins
+- **Error Handling**: No sensitive information in error messages
+- **Rate Limiting**: Protection against abuse
+
+### Data Security
+- **Environment Variables**: Secure API key storage
+- **Input Sanitization**: Clean and validate all inputs
+- **Output Filtering**: Remove sensitive data from responses
+
+## 📖 Usage Examples
+
+### Frontend Integration
+
+```javascript
+// Search for brands
+const searchBrands = async (query) => {
+  const response = await fetch('/api/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, limit: 10 })
+  });
+  return response.json();
+};
+
+// Get FAQ answer
+const getFAQAnswer = async (question) => {
+  const response = await fetch('/api/faq', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user_question: question })
+  });
+  return response.json();
+};
+
+// Get Quran/Hadith answer
+const getQuranAnswer = async (question) => {
+  const response = await fetch('/api/quran', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user_question: question })
+  });
+  return response.json();
+};
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is part of the Ummah United platform and is designed to support humanitarian efforts and Islamic values.
+
+## 🆘 Support
+
+For support or questions:
+- Check the API documentation at `/docs`
+- Review the health endpoint at `/health`
+- Contact the development team
+
+---
+
+**Note**: This backend is designed to work seamlessly with the Ummah United frontend application. Make sure both frontend and backend are properly configured and running for full functionality. 
