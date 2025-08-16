@@ -2,45 +2,23 @@ import { useState, useRef } from 'react'
 import './PosterGenerator.css'
 
 function PosterGenerator() {
-  const [selectedTemplate, setSelectedTemplate] = useState('protest')
   const [posterData, setPosterData] = useState({
     title: 'Justice for Palestine',
     subtitle: 'Stand Together for Human Rights',
-    date: '',
-    time: '',
-    location: '',
     description: 'Join us in solidarity for justice and peace.',
-    customText: ''
+    selectedImage: 'hunger'
   })
-  const [generatedPoster, setGeneratedPoster] = useState(null)
-  const [isGenerating, setIsGenerating] = useState(false)
-  const canvasRef = useRef(null)
 
-  const templates = [
-    {
-      id: 'protest',
-      name: 'Protest March',
-      preview: '🚶‍♂️',
-      colors: ['#000000', '#009736', '#ffffff']
-    },
-    {
-      id: 'rally',
-      name: 'Rally',
-      preview: '📢',
-      colors: ['#ce1126', '#ffffff', '#000000']
-    },
-    {
-      id: 'solidarity',
-      name: 'Solidarity (AI Generated)',
-      preview: '🤝',
-      colors: ['#009736', '#ffffff', '#000000']
-    },
-    {
-      id: 'awareness',
-      name: 'Awareness',
-      preview: '💡',
-      colors: ['#000000', '#009736', '#ffffff']
-    }
+  const [aiDesign, setAiDesign] = useState(null)
+  const [isGeneratingAi, setIsGeneratingAi] = useState(false)
+  const [aiError, setAiError] = useState('')
+
+  const posterImages = [
+    { id: 'hunger', path: '/Hunger.png' },
+    { id: 'solidarity', path: '/Solidarity.png' },
+    { id: 'voice', path: '/Voice.png' }
+
+
   ]
 
   const handleInputChange = (field, value) => {
@@ -50,130 +28,84 @@ function PosterGenerator() {
     }))
   }
 
-  const generatePoster = () => {
-    // If solidarity template is selected, use AI generation
-    if (selectedTemplate === 'solidarity') {
-      generateAIPoster()
-      return
-    }
 
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
+  const generatePoster = async () => {
+    setIsGeneratingAi(true)
+    setAiError('')
+    setAiDesign(null)
+
+    // Rotate through images: hunger -> solidarity -> voice -> hunger...
+    const imageIds = ['hunger', 'solidarity', 'voice']
+    const currentIndex = imageIds.indexOf(posterData.selectedImage)
+    const nextIndex = (currentIndex + 1) % imageIds.length
+    const nextImage = imageIds[nextIndex]
+
     
-    // Set canvas size
-    canvas.width = 800
-    canvas.height = 1000
-    
-    const template = templates.find(t => t.id === selectedTemplate)
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
-    gradient.addColorStop(0, template.colors[0])
-    gradient.addColorStop(0.5, template.colors[1])
-    gradient.addColorStop(1, template.colors[2])
-    ctx.fillStyle = gradient
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    
-    // Palestine flag element
-    const flagWidth = 120
-    const flagHeight = 80
-    const flagX = (canvas.width - flagWidth) / 2
-    const flagY = 50
-    
-    // Flag stripes
-    ctx.fillStyle = '#000000'
-    ctx.fillRect(flagX, flagY, flagWidth, flagHeight / 3)
-    ctx.fillStyle = '#ffffff'
-    ctx.fillRect(flagX, flagY + flagHeight / 3, flagWidth, flagHeight / 3)
-    ctx.fillStyle = '#009736'
-    ctx.fillRect(flagX, flagY + 2 * flagHeight / 3, flagWidth, flagHeight / 3)
-    
-    // Flag triangle
-    ctx.fillStyle = '#ce1126'
-    ctx.beginPath()
-    ctx.moveTo(flagX, flagY)
-    ctx.lineTo(flagX, flagY + flagHeight)
-    ctx.lineTo(flagX + flagWidth * 0.4, flagY + flagHeight / 2)
-    ctx.closePath()
-    ctx.fill()
-    
-    // Title
-    ctx.fillStyle = '#ffffff'
-    ctx.font = 'bold 48px Arial'
-    ctx.textAlign = 'center'
-    ctx.fillText(posterData.title, canvas.width / 2, flagY + flagHeight + 80)
-    
-    // Subtitle
-    ctx.fillStyle = '#ffffff'
-    ctx.font = '32px Arial'
-    ctx.fillText(posterData.subtitle, canvas.width / 2, flagY + flagHeight + 120)
-    
-    // Date and Time
-    if (posterData.date || posterData.time) {
-      ctx.fillStyle = '#ffffff'
-      ctx.font = '28px Arial'
-      let dateTimeText = ''
-      if (posterData.date) dateTimeText += posterData.date
-      if (posterData.date && posterData.time) dateTimeText += ' at '
-      if (posterData.time) dateTimeText += posterData.time
-      ctx.fillText(dateTimeText, canvas.width / 2, flagY + flagHeight + 180)
-    }
-    
-    // Location
-    if (posterData.location) {
-      ctx.fillStyle = '#ffffff'
-      ctx.font = '28px Arial'
-      ctx.fillText(`📍 ${posterData.location}`, canvas.width / 2, flagY + flagHeight + 220)
-    }
-    
-    // Description
-    if (posterData.description) {
-      ctx.fillStyle = '#ffffff'
-      ctx.font = '20px Arial'
-      const words = posterData.description.split(' ')
-      let line = ''
-      let y = flagY + flagHeight + 280
-      
-      for (let word of words) {
-        const testLine = line + word + ' '
-        const metrics = ctx.measureText(testLine)
-        if (metrics.width > canvas.width - 100) {
-          ctx.fillText(line, canvas.width / 2, y)
-          line = word + ' '
-          y += 30
-        } else {
-          line = testLine
-        }
+    // Update the selected image for next generation
+    setPosterData(prev => ({
+      ...prev,
+      selectedImage: nextImage
+    }))
+
+    try {
+      const response = await fetch('http://localhost:8000/api/generate-poster', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          theme: 'protest',
+          title: posterData.title,
+          subtitle: posterData.subtitle,
+          description: posterData.description,
+          imageType: nextImage
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to generate poster')
       }
-      ctx.fillText(line, canvas.width / 2, y)
+
+      const data = await response.json()
+      setAiDesign(data)
+      
+    } catch (err) {
+      setAiError(err.message || 'An error occurred while generating poster')
+    } finally {
+      setIsGeneratingAi(false)
     }
-    
-    // Custom text
-    if (posterData.customText) {
-      ctx.fillStyle = '#ffffff'
-      ctx.font = '24px Arial'
-      ctx.fillText(posterData.customText, canvas.width / 2, canvas.height - 100)
-    }
-    
-    // Footer
-    ctx.fillStyle = '#ffffff'
-    ctx.font = '18px Arial'
-    ctx.fillText('Generated by United Ummah', canvas.width / 2, canvas.height - 50)
-    
-    // Convert to image
-    const posterImage = canvas.toDataURL('image/png')
-    setGeneratedPoster(posterImage)
   }
 
-  const downloadPoster = () => {
-    if (generatedPoster) {
-      const link = document.createElement('a')
-      link.download = 'protest-poster.png'
-      link.href = generatedPoster
-      link.click()
+  const generateAiPoster = async () => {
+    setIsGeneratingAi(true)
+    setAiError('')
+    setAiDesign(null)
+
+    try {
+      const response = await fetch('http://localhost:8000/api/generate-poster', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          theme: 'protest',
+          title: posterData.title,
+          subtitle: posterData.subtitle,
+          description: posterData.description,
+          style: 'modern'
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to generate AI poster design')
+      }
+
+      const data = await response.json()
+      setAiDesign(data)
+    } catch (err) {
+      setAiError(err.message || 'An error occurred while generating AI design')
+    } finally {
+      setIsGeneratingAi(false)
     }
   }
 
@@ -181,14 +113,13 @@ function PosterGenerator() {
     setPosterData({
       title: 'Justice for Palestine',
       subtitle: 'Stand Together for Human Rights',
-      date: '',
-      time: '',
-      location: '',
       description: 'Join us in solidarity for justice and peace.',
-      customText: ''
+      selectedImage: 'hunger'
     })
-    setGeneratedPoster(null)
-    setIsGenerating(false)
+
+    setAiDesign(null)
+    setAiError('')
+
   }
   const generateAIPoster = async () => {
     setIsGenerating(true)
@@ -264,27 +195,24 @@ function PosterGenerator() {
   return (
     <div className="poster-generator">
       <div className="page-header">
-        <h1>Poster Generator</h1>
-        <p>Create powerful protest posters for your events and demonstrations</p>
+        <h1>AI Poster Generator</h1>
+        <p>Create professional Palestine solidarity posters with AI-powered design</p>
       </div>
 
       <div className="generator-container">
         <div className="editor-section">
-          <h2>Design Your Poster</h2>
+          <h2>Design Your AI Poster</h2>
           
-          <div className="template-selection">
-            <h3>Choose Template</h3>
-            <div className="template-grid">
-              {templates.map(template => (
-                <div
-                  key={template.id}
-                  className={`template-option ${selectedTemplate === template.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedTemplate(template.id)}
-                >
-                  <div className="template-preview">{template.preview}</div>
-                  <span>{template.name}</span>
-                </div>
-              ))}
+          <div className="image-info-section">
+            <h3>🎨 AI Poster Generation</h3>
+            <div className="info-box">
+              <p>Images rotate automatically with each generation:</p>
+              <ul>
+                <li>1st generation: <strong>Hunger</strong> theme</li>
+                <li>2nd generation: <strong>Solidarity</strong> theme</li>
+                <li>3rd generation: <strong>Voice</strong> theme</li>
+                <li>Then cycles back to Hunger...</li>
+              </ul>
             </div>
             {selectedTemplate === 'solidarity' && (
               <div className="ai-notice">
@@ -316,38 +244,7 @@ function PosterGenerator() {
               />
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="date">Date</label>
-                <input
-                  type="date"
-                  id="date"
-                  value={posterData.date}
-                  onChange={(e) => handleInputChange('date', e.target.value)}
-                />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="time">Time</label>
-                <input
-                  type="time"
-                  id="time"
-                  value={posterData.time}
-                  onChange={(e) => handleInputChange('time', e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="location">Location</label>
-              <input
-                type="text"
-                id="location"
-                value={posterData.location}
-                onChange={(e) => handleInputChange('location', e.target.value)}
-                placeholder="Enter event location"
-              />
-            </div>
 
             <div className="form-group">
               <label htmlFor="description">Description</label>
@@ -360,24 +257,11 @@ function PosterGenerator() {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="customText">Custom Text</label>
-              <input
-                type="text"
-                id="customText"
-                value={posterData.customText}
-                onChange={(e) => handleInputChange('customText', e.target.value)}
-                placeholder="Additional text (optional)"
-              />
-            </div>
-
             <div className="form-actions">
-              <button 
-                className="btn btn-primary" 
-                onClick={generatePoster}
-                disabled={isGenerating}
-              >
-                {isGenerating ? 'Generating...' : 'Generate Poster'}
+
+              <button className="btn btn-primary" onClick={generatePoster}>
+                Generate AI Poster
+
               </button>
               <button className="btn btn-secondary" onClick={resetPoster}>
                 Reset
@@ -386,22 +270,33 @@ function PosterGenerator() {
           </div>
         </div>
 
+        {/* Poster Preview Section */}
         <div className="preview-section">
-          <h2>Poster Preview</h2>
+          <h2>Generated Poster</h2>
           
-          {isGenerating ? (
-            <div className="poster-placeholder">
-              <div className="placeholder-content">
-                <div className="placeholder-icon">🤖</div>
-                <p>AI is generating your poster...</p>
-                <p>This may take a few moments</p>
-              </div>
+          {isGeneratingAi ? (
+            <div className="generating-placeholder">
+              <div className="loading-spinner">🎨</div>
+              <p>Generating your AI poster...</p>
             </div>
-          ) : generatedPoster ? (
+          ) : aiDesign && aiDesign.generated_image ? (
+
             <div className="poster-preview">
-              <img src={generatedPoster} alt="Generated poster" />
+              <img 
+                src={`data:image/png;base64,${aiDesign.generated_image}`} 
+                alt="AI Generated Poster" 
+                className="generated-poster-image"
+              />
               <div className="poster-actions">
-                <button className="btn btn-primary" onClick={downloadPoster}>
+                <button 
+                  className="btn btn-primary" 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.download = 'ai-generated-poster.png';
+                    link.href = `data:image/png;base64,${aiDesign.generated_image}`;
+                    link.click();
+                  }}
+                >
                   Download Poster
                 </button>
               </div>
@@ -410,37 +305,43 @@ function PosterGenerator() {
             <div className="poster-placeholder">
               <div className="placeholder-content">
                 <div className="placeholder-icon">🎨</div>
-                <p>Your poster will appear here</p>
-                <p>Fill out the form and click "Generate Poster"</p>
+                <p>Your AI-generated poster will appear here</p>
+                <p>Fill out the form and click "Generate AI Poster"</p>
               </div>
+            </div>
+          )}
+
+          {aiError && (
+            <div className="ai-error">
+              {aiError}
             </div>
           )}
         </div>
       </div>
 
       <div className="tips-section">
-        <h2>Design Tips</h2>
+        <h2>AI Poster Generation Tips</h2>
         <div className="tips-grid">
           <div className="tip-card">
-            <h3>📝 Keep it Simple</h3>
-            <p>Use clear, readable text and avoid cluttering the design</p>
+            <h3>🤖 AI-Powered Design</h3>
+            <p>Our AI generates professional posters with Palestinian solidarity themes</p>
           </div>
           <div className="tip-card">
-            <h3>🎨 Use Contrast</h3>
-            <p>Ensure text is clearly visible against the background</p>
+            <h3>🎨 Choose Your Style</h3>
+            <p>Select from modern, bold, elegant, minimalist, or vintage styles</p>
           </div>
           <div className="tip-card">
-            <h3>📱 Think Mobile</h3>
-            <p>Designs should work well when shared on social media</p>
+            <h3>📝 Customize Content</h3>
+            <p>Add your own title, subtitle, and description for personalized posters</p>
           </div>
           <div className="tip-card">
-            <h3>🔍 Include Essentials</h3>
-            <p>Always include date, time, location, and purpose</p>
+            <h3>📱 Instant Download</h3>
+            <p>Download high-quality PNG files ready for printing or sharing</p>
           </div>
         </div>
       </div>
 
-      <canvas ref={canvasRef} style={{ display: 'none' }} />
+
     </div>
   )
 }
