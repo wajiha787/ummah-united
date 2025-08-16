@@ -1,6 +1,11 @@
 # Ummah United 🌍
 
-![Ummah United Logo](Images/Ummah_united.png)
+
+## 📖 Project Guide
+
+For a comprehensive guide to Ummah United, including detailed setup instructions, feature explanations, and technical documentation, please refer to our complete project guide:
+
+**[📄 Guide_Ummah_United.pdf](Guide_Ummah_United.pdf)**
 
 ## About Ummah United
 
@@ -11,6 +16,9 @@
 - 🕊️ **Peace** - Promoting peace, justice, and human rights
 - 🏠 **Support** - Providing resources and aid to those in need
 - 📚 **Education** - Sharing knowledge and raising awareness
+
+![Ummah United Core Values](Images/Ummah_united.png)
+
 
 ## 🌟 What Our Platform Does
 
