@@ -5,7 +5,7 @@ function QuranicVerse() {
   const [currentVerse, setCurrentVerse] = useState(0)
   const [showTranslation, setShowTranslation] = useState(true)
   const [showTafsir, setShowTafsir] = useState(false)
-  
+
   // Quran Chatbot states
   const [isChatbotOpen, setIsChatbotOpen] = useState(false)
   const [chatbotQuestion, setChatbotQuestion] = useState('')
@@ -136,7 +136,7 @@ function QuranicVerse() {
     setChatbotAnswer('')
 
     try {
-      const response = await fetch('/api/quran', {
+      const response = await fetch('http://localhost:8000/api/quran', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

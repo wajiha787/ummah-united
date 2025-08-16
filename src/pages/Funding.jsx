@@ -67,7 +67,7 @@ function Funding() {
     setFaqAnswer('')
 
     try {
-      const response = await fetch('/api/faq', {
+      const response = await fetch('http://localhost:8000/api/faq', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
