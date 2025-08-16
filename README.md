@@ -1,5 +1,6 @@
 # Ummah United 🌍
 
+
 ## 📖 Project Guide
 
 For a comprehensive guide to Ummah United, including detailed setup instructions, feature explanations, and technical documentation, please refer to our complete project guide:
@@ -17,6 +18,7 @@ For a comprehensive guide to Ummah United, including detailed setup instructions
 - 📚 **Education** - Sharing knowledge and raising awareness
 
 ![Ummah United Core Values](Images/Ummah_united.png)
+
 
 ## 🌟 What Our Platform Does
 

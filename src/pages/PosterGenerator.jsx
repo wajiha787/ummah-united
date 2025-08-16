@@ -18,7 +18,6 @@ function PosterGenerator() {
     { id: 'solidarity', path: '/Solidarity.png' },
     { id: 'voice', path: '/Voice.png' }
 
-
   ]
 
   const handleInputChange = (field, value) => {
